@@ -59,7 +59,10 @@ export default function ExpressionInput({ setHistory }) {
       </div>
       <div className="card-body w-full">
         <label className="input w-full input-bordered flex items-center gap-2">
-          Expression:
+          <div className="label">
+            <span className="label-text lg:hidden">Expr:</span>
+            <span className="hidden lg:flex">Expression:</span>
+          </div>
           <input
             type="text"
             value={expression}
