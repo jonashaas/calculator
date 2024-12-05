@@ -5,10 +5,11 @@ import Calculation from '@/utils/calculation';
 
 export default function ExpressionInput({ setHistory }) {
   const [expression, setExpression] = useState('');
-  const [result, setResult] = useState('');
+  const [error, setError] = useState('');
 
   const handleExpressionChange = (e) => {
     setExpression(e.target.value);
+    setError(''); // Clear error when input changes
   };
 
   const handleSubmit = () => {
@@ -17,7 +18,6 @@ export default function ExpressionInput({ setHistory }) {
 
     if (calculatedResult !== undefined) {
       const finalResult = `Result: ${expression} = ${calculatedResult}`;
-      setResult(finalResult);
 
       // Update Local Storage
       const history = JSON.parse(localStorage.getItem('calculationHistory')) || [];
@@ -26,8 +26,11 @@ export default function ExpressionInput({ setHistory }) {
 
       // Update shared state
       setHistory(history);
+
+      // Clear any previous error
+      setError('');
     } else {
-      setResult('Error: Invalid expression');
+      setError('Error: Invalid expression');
     }
   };
 
@@ -51,7 +54,7 @@ export default function ExpressionInput({ setHistory }) {
             className="grow"
           />
           <kbd className="kbd kbd-sm hidden lg:flex">↵</kbd>
-        </label >
+        </label>
         <div className="card-actions">
           <button
             onClick={handleSubmit}
@@ -62,9 +65,9 @@ export default function ExpressionInput({ setHistory }) {
         </div>
 
         {
-          result && (
-            <div className="mt-4 text-center">
-              <p>{result}</p>
+          error && (
+            <div className="mt-4 text-red-500">
+              <p>{error}</p>
             </div>
           )
         }
