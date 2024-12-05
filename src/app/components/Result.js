@@ -31,7 +31,7 @@ export default function Results({ history, setHistory }) {
                   return (
                     <tr
                       key={index}
-                      className={index === 0 ? 'bg-base-200' : ''}
+                      className={index === 0 ? 'bg-base-300' : ''}
                     >
                       <th className="w-4">
                         {index === 0 ? (
