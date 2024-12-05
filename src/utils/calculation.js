@@ -23,9 +23,11 @@ export default class Calculation {
 
   // Überprüft, ob der Ausdruck gültige Zeichen enthält
   isValidExpression(expression) {
-    const validChars = /^[0-9+\-*/().\s]+$/; // Zahlen, Operatoren, Klammern und Leerzeichen erlaubt
-    return validChars.test(expression);
+    const validPattern = /^[\d+\-*/().\s]+$/; // Only valid characters
+    const invalidSpaces = /\d\s+\d/; // Detect spaces between numbers
+    return validPattern.test(expression) && !invalidSpaces.test(expression);
   }
+
 
   // Entfernt unnötige Leerzeichen aus dem Ausdruck
   sanitizeExpression(expression) {
