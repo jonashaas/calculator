@@ -1,7 +1,5 @@
-import { geistSans, geistMono } from "./fonts";
+import { geistSans, geistMono } from "@/app/fonts";
 import "./globals.css";
-
-
 
 export const metadata = {
   title: "Inline Calculator",
@@ -10,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark">
+    <html lang="en" data-theme="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -19,4 +17,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
