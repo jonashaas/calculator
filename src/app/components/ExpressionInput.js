@@ -17,7 +17,7 @@ export default function ExpressionInput({ setHistory }) {
     const calculatedResult = calc.calculate();
 
     if (calculatedResult !== undefined) {
-      const finalResult = `Result: ${expression} = ${calculatedResult}`;
+      const finalResult = `${expression} = ${calculatedResult}`;
 
       // Update Local Storage
       const history = JSON.parse(localStorage.getItem('calculationHistory')) || [];
@@ -66,7 +66,7 @@ export default function ExpressionInput({ setHistory }) {
 
         {
           error && (
-            <div className="mt-4 text-red-500">
+            <div className="mt-4 text-error">
               <p>{error}</p>
             </div>
           )
