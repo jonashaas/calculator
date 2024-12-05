@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Calculation from '@/utils/calculation';
+import { MdHelp } from "react-icons/md";
 
 export default function ExpressionInput({ setHistory }) {
   const [expression, setExpression] = useState('');
@@ -42,6 +43,20 @@ export default function ExpressionInput({ setHistory }) {
 
   return (
     <>
+      <div className="flex justify-end w-full">
+        <div className="w-4 h-4 cursor-pointer" onClick={() => document.getElementById('help_modal').showModal()}>
+          <MdHelp className='text-right text-sm text-gray-500' />
+        </div>
+        <dialog id="help_modal" className="modal">
+          <div className="modal-box">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 className="text-lg font-bold">Hello!</h3>
+            <p className="py-4">Press ESC key or click on ✕ button to close</p>
+          </div>
+        </dialog>
+      </div>
       <div className="card-body w-full">
         <label className="input w-full input-bordered flex items-center gap-2">
           Expression:
