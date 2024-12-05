@@ -10,9 +10,10 @@ module.exports = {
       {
         light: {
           "base-100": "#fcfbf8",
+          "base-200": "#ffffff",
         },
       },
-      "dark", "sunset", "emerald", "cupcake"],
+      "dark"],
   },
   plugins: [
     require('daisyui'),
