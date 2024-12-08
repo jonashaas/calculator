@@ -8,7 +8,8 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        light: {
+        emerald: {
+          ...require("daisyui/src/theming/themes")["emerald"],
           "base-100": "#fcfbf8",
           "base-200": "#ffffff",
         },

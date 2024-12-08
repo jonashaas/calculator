@@ -55,7 +55,7 @@ export default function Results({ history, setHistory }) {
         )}
 
         <div className="card-actions">
-          <button onClick={clearHistory} className="btn btn-secondary w-full">
+          <button onClick={clearHistory} className="btn btn-accent w-full">
             Clear History
           </button>
         </div>

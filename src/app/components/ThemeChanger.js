@@ -15,8 +15,8 @@ export default function ThemeChanger() {
 
   const toggleTheme = () => {
     setIsDark(!isDark);
-    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', isDark ? 'emerald' : 'dark');
+    localStorage.setItem('theme', isDark ? 'emerald' : 'dark');
   };
 
   return (

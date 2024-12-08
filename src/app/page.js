@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <NavBar />
       <main className="flex flex-col gap-4 mt-4 mx-auto max-w-xl w-full p-4">
-        <h1 className="text-2xl font-bold">Inline Calculator</h1>
+        <h1 className="text-2xl font-bold">Calculator</h1>
         <Card>
           <ExpressionInput setHistory={setHistory} />
         </Card>

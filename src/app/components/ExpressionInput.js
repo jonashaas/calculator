@@ -44,16 +44,24 @@ export default function ExpressionInput({ setHistory }) {
   return (
     <>
       <div className="flex justify-end w-full">
-        <div className="w-4 h-4 cursor-pointer" onClick={() => document.getElementById('help_modal').showModal()}>
+        <div className="w-4 h-4 cursor-pointer" onClick={() => document.getElementById('calculator_help_modal').showModal()}>
           <MdHelp className='text-right text-sm text-gray-500' />
         </div>
-        <dialog id="help_modal" className="modal">
+        <dialog id="calculator_help_modal" className="modal">
           <div className="modal-box">
             <form method="dialog">
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
-            <h3 className="text-lg font-bold">Hello!</h3>
-            <p className="py-4">Press ESC key or click on ✕ button to close</p>
+            <h3 className="text-lg font-bold">Calculator Help</h3>
+            <p className="py-4">
+              Welcome to the Inline Calculator! Here’s how to use it:
+            </p>
+            <ul className="list-disc list-inside">
+              <li>Only the following operators are allowed: <strong>+, -, *, /</strong></li>
+              <li>Use parentheses for grouping, e.g., <code>(2 + 3) * 4</code></li>
+              <li>Ensure your expression is syntactically correct to avoid errors.</li>
+              <li>Press ESC or click the ✕ button to close this help dialog.</li>
+            </ul>
           </div>
         </dialog>
       </div>
