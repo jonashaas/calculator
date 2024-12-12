@@ -5,36 +5,37 @@ import Calculation from '@/utils/calculation';
 import { MdHelp } from "react-icons/md";
 
 export default function ExpressionInput({ setHistory }) {
-  const [expression, setExpression] = useState('');
-  const [error, setError] = useState('');
+  const [expression, setExpression] = useState(''); // State to store the user's input expression
+  const [error, setError] = useState(''); // State to store error messages
 
+  // Updates the expression and clears any previous error
   const handleExpressionChange = (e) => {
     setExpression(e.target.value);
     setError(''); // Clear error when input changes
   };
 
+  // Validates and calculates the expression, updates history, and handles errors
   const handleSubmit = () => {
-    const calc = new Calculation(expression);
-    const calculatedResult = calc.calculate();
+    const calc = new Calculation(expression); // Create a new Calculation instance
+    const calculatedResult = calc.calculate(); // Evaluate the expression
 
     if (calculatedResult !== undefined) {
-      const finalResult = `${expression} = ${calculatedResult}`;
+      const finalResult = `${expression} = ${calculatedResult}`; // Format the result
 
-      // Update Local Storage
+      // Retrieve calculation history from localStorage or initialize an empty array
       const history = JSON.parse(localStorage.getItem('calculationHistory')) || [];
-      history.push(finalResult);
-      localStorage.setItem('calculationHistory', JSON.stringify(history));
+      console.log(history);
+      history.push(finalResult); // Add the new result to the history
+      localStorage.setItem('calculationHistory', JSON.stringify(history)); // Save updated history to localStorage
 
-      // Update shared state
-      setHistory(history);
-
-      // Clear any previous error
-      setError('');
+      setHistory(history); // Update the shared state with the new history
+      setError(''); // Clear any previous error
     } else {
-      setError('Error: Invalid expression');
+      setError('Error: Invalid expression'); // Display an error for invalid input
     }
   };
 
+  // Submits the expression when the Enter key is pressed
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleSubmit();
@@ -43,6 +44,7 @@ export default function ExpressionInput({ setHistory }) {
 
   return (
     <>
+      {/* Help icon with modal for user guidance */}
       <div className="flex justify-end w-full">
         <div className="w-4 h-4 cursor-pointer" onClick={() => document.getElementById('calculator_help_modal').showModal()}>
           <MdHelp className='text-right text-sm text-gray-500' />
@@ -50,6 +52,7 @@ export default function ExpressionInput({ setHistory }) {
         <dialog id="calculator_help_modal" className="modal">
           <div className="modal-box">
             <form method="dialog">
+              {/* Close button for the help modal */}
               <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
             </form>
             <h3 className="text-lg font-bold">Calculator Help</h3>
@@ -65,23 +68,26 @@ export default function ExpressionInput({ setHistory }) {
           </div>
         </dialog>
       </div>
+
+      {/* Input field and submit button */}
       <div className="card-body w-full">
         <label className="input w-full input-bordered flex items-center gap-2">
           <div className="label">
-            <span className="label-text lg:hidden">Expr:</span>
-            <span className="hidden lg:flex">Expression:</span>
+            <span className="label-text lg:hidden">Expr:</span> {/* Abbreviated label for small screens */}
+            <span className="hidden lg:flex">Expression:</span> {/* Full label for larger screens */}
           </div>
           <input
             type="text"
             value={expression}
-            onChange={handleExpressionChange}
-            onKeyDown={handleKeyDown}
-            placeholder=""
+            onChange={handleExpressionChange} // Updates the input value
+            onKeyDown={handleKeyDown} // Handles Enter key for submission
+            placeholder="" // Empty placeholder for now
             className="grow"
           />
-          <kbd className="kbd kbd-sm hidden lg:flex">↵</kbd>
+          <kbd className="kbd kbd-sm hidden lg:flex">↵</kbd> {/* Visual hint for Enter key */}
         </label>
         <div className="card-actions">
+          {/* Button to submit the input */}
           <button
             onClick={handleSubmit}
             className="btn btn-primary w-full mt-2"
@@ -90,6 +96,7 @@ export default function ExpressionInput({ setHistory }) {
           </button>
         </div>
 
+        {/* Displays an error message if one exists */}
         {
           error && (
             <div className="mt-4 text-error">
